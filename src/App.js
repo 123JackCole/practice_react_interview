@@ -1,44 +1,41 @@
 import React from "react";
 import "./App.css";
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 function App() {
-  const [counter, setCounter] = useState(1);
+  // counter
+  const [counter, setCounter] = useState(0);
 
   const handleClick = () => {
-    counter++;
+    setCounter(counter + 1);
   };
 
+  // api fetch
+  const [APIData, setAPIData] = useState("");
   const endpoint = "https://randomuser.me/api";
-  const [APIFetch, setAPIFetch] = useState();
 
-  const fetchAPI = (endpoint) => {
+  const fetchAPIData = (endpoint) => {
     fetch(endpoint)
       .then((res) => res.json())
-      .then((data) => setAPIFetch(data));
+      .then((data) => {
+        return setAPIData(JSON.stringify(data, null, 2));
+      });
   };
 
+  useEffect(() => {
+    fetchAPIData(endpoint);
+  }, []);
+
   return (
-    <div className="App">
+    <div>
+      <h1>Times Clicked : {counter}</h1>
+      <button onClick={() => handleClick()}>+1</button>
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
-      <br></br>
-      <h1>{counter}</h1>
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-        }}
-      >
-        +1
-      </button>
-      <br></br>
-      <br></br>
-      <br></br>
-      {fetchAPI()}
-      <h2>{APIFetch}</h2>
+      {/* <button onClick={() => fetchAPIData()}> Fetch </button> */}
+      <pre>{APIData}</pre>
     </div>
   );
 }
