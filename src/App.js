@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import User from './User.js'
 
 const { useState, useEffect } = React;
 
@@ -34,8 +35,8 @@ function App() {
       <br></br>
       <br></br>
       <br></br>
-      {/* <button onClick={() => fetchAPIData()}> Fetch </button> */}
       <pre>{APIData}</pre>
+      <User data={APIData}/>
     </div>
   );
 }
