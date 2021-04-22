@@ -14,13 +14,14 @@ function App() {
 
   // api fetch
   const [APIData, setAPIData] = useState("");
+  const [UserData, setUserData] = useState([]);
   const endpoint = "https://randomuser.me/api";
 
   const fetchAPIData = (endpoint) => {
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
-        return setAPIData(JSON.stringify(data, null, 2));
+        return setAPIData(...data.results);
       });
   };
 
@@ -35,7 +36,8 @@ function App() {
       <br></br>
       <br></br>
       <br></br>
-      <pre>{APIData}</pre>
+      {console.log(APIData)}
+      {/* <pre>{APIData}</pre> */}
       <User data={APIData}/>
     </div>
   );

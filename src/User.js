@@ -1,7 +1,22 @@
-import React, { useState } from 'react';
+import React from "react";
 
 // User component
 
 const User = (props) => {
-  return <></>;
+  const {
+    name: { title, last },
+    picture: { large },
+  } = props.data;
+  if (props) {
+    return (
+      <div>
+        <h1>
+          {title}. {last}
+        </h1>
+        <img src={large}></img>
+      </div>
+    );
+  }
 };
+
+export default User;
