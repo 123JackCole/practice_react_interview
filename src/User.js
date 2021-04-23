@@ -13,7 +13,7 @@ const User = (props) => {
         <h1>
           {title}. {last}
         </h1>
-        <img src={large}></img>
+        <img src={large} alt=""></img>
       </div>
     );
   }
